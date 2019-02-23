@@ -1,0 +1,36 @@
+<app-nav [navItems]="userNavs"></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="form-style-6">
+        <h3>Submit Request</h3>
+      <form (ngSubmit)="submitRequest(requestForm)" #requestForm="ngForm">
+        <div id="reimbursement-data">
+          <div class="form-group">
+            <label for="reimbursement-amount">Amount</label>
+            <input type="number" id="reimbursement-amount" class="form-control" ngModel name="reimbursement-amount"
+                   required>
+          </div>
+          <div class="form-group">
+            <label for="reimbursement-description">Description</label>
+            <textarea rows="4" cols="50" id="reimbursement-description" class="form-control" ngModel
+               name="reimbursement-description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="reimbursement-type">Type</label>
+            <select id="reimbursement-type" class="form-control" [ngModel]="defaultTypeOption" name="reimbursement-type">
+              <option value="1">Lodging</option>
+              <option value="2">Travel</option>
+              <option value="3">Food</option>
+              <option value="4">Other</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!requestForm.valid || submitted">Submit</button>
+      </form>
+  </div>
+</div>
+<div [hidden] ="!submitted">
+  <h3>Your request has been submitted</h3>
+
+  <h3>click <a (click) = "anotherRequest()">here to Submit another request</a></h3>
+</div>

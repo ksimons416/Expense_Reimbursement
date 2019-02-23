@@ -1,0 +1,10 @@
+<nav>
+  <ul class="nav navbar-nav">
+    <li class="nav-item" *ngFor="let item of navItems">
+      <a class="nav-link" [routerLink]="['/', item.link]"> {{item.title}} </a>
+    </li>
+  </ul>
+  <div>
+    <button class="nav-link" type="submit" (click)="Logout()">Logout</button>
+  </div>
+</nav>

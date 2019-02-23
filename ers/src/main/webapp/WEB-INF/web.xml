@@ -1,0 +1,55 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.spark.ex.web.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/auth/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReimbursementServlet</servlet-name>
+        <servlet-class>com.spark.ex.web.ReimbursementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReimbursementServlet</servlet-name>
+        <url-pattern>/reimbursements/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReimbursementsByAuthorServlet</servlet-name>
+        <servlet-class>com.spark.ex.web.ReimbursementsByAuthorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReimbursementsByAuthorServlet</servlet-name>
+        <url-pattern>/reimbursementsbyauthor/*</url-pattern>
+    </servlet-mapping>
+    
+    <listener>
+        <listener-class>com.spark.ex.web.ContextListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:postgresql://karadatabase.ca8gscp7ifjt.us-east-2.rds.amazonaws.com:5432/karadatabase</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUsername</param-name>
+        <param-value>ksimons416</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>Tootlebug4</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbDriver</param-name>
+        <param-value>org.postgresql.Driver</param-value>
+    </context-param>
+
+</web-app>

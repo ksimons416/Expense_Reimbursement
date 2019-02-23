@@ -1,0 +1,25 @@
+<app-nav [navItems]="userNavs"></app-nav>
+<h1>Your Ticket Details</h1>
+     <table>
+      <tr>
+      <th>ID</th>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th>Type</th>
+      <th>Status</th>
+      </tr>
+      <tr *ngFor="let reimbursement of reimbursements">
+          <td>{{reimbursement.id}}</td>
+          <td>${{reimbursement.amount}}</td>
+          <td>{{reimbursement.description}}</td>
+          <td *ngIf="reimbursement.authorId === 2">{{authorName1}}</td>
+      <td *ngIf="reimbursement.typeId === 1">{{type1}}</td>
+      <td *ngIf="reimbursement.typeId === 2">{{type2}}</td>
+      <td *ngIf="reimbursement.typeId === 3">{{type3}}</td>
+      <td *ngIf="reimbursement.typeId === 4">{{type4}}</td>
+       <td *ngIf="reimbursement.statusId === 1">{{status1}}</td>
+       <td *ngIf="reimbursement.statusId === 2">{{status2}}</td>
+       <td *ngIf="reimbursement.statusId === 3">{{status3}}</td>
+        </tr>
+    </table>

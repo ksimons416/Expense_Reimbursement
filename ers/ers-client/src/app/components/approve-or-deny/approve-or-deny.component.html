@@ -1,0 +1,56 @@
+<app-nav [navItems]="userNavs"></app-nav>
+<h1>Reimbursement Approval</h1>
+<div id = "mydiv">
+<h3>filter Requests</h3>
+<input type="radio" name = "a" (click)="fShowAllReimbursements()">All<br>
+<input type="radio" name = "a" (click)="fShowApprovedReimbursements()">Approved<br>
+<input type="radio" name = "a" (click)="fShowDeniedReimbursements()">Denied<br>
+<input type="radio" name = "a" (click)="fShowPendingReimbursements()">Pending<br>
+</div>
+
+<!-- - -->
+<div>
+<table>
+   <tr>
+     <th>ID</th>
+     <th>Author</th>
+     <th>Description</th>
+     <th>Amount</th>
+     <th>Date Submitted</th>
+     <th>Type</th>
+     <th>Status</th>
+     <th>Action</th>
+   </tr>
+    <ng-container *ngFor="let reimbursement of reimbursements">
+   <tr *ngIf="reimbursement.statusId === 1 && showPendingReimbursements ||
+    reimbursement.statusId === 2 && showApprovedReimbursements ||
+    reimbursement.statusId === 3 && showDeniedReimbursements">
+     <td>{{reimbursement.id}}</td>
+      <td *ngIf="reimbursement.authorId === 2">{{authorName1}}</td>
+      <td>{{reimbursement.description}}</td>
+      <td>${{reimbursement.amount}}</td>
+      <td>{{reimbursement.dateSubmitted | date}}</td>
+      <td *ngIf="reimbursement.typeId === 1">{{type1}}</td>
+      <td *ngIf="reimbursement.typeId === 2">{{type2}}</td>
+      <td *ngIf="reimbursement.typeId === 3">{{type3}}</td>
+      <td *ngIf="reimbursement.typeId === 4">{{type4}}</td>
+    <td *ngIf="reimbursement.statusId === 1">{{status1}}</td>
+    <td *ngIf="reimbursement.statusId === 2">{{status2}}</td>
+    <td *ngIf="reimbursement.statusId === 3">{{status3}}</td>
+     <td *ngIf="reimbursement.statusId === 1">
+       <form (ngSubmit)="submitRequest(f, reimbursement.id)" #f="ngForm">
+         <input type="radio" value="approve" ngModel name="status">Approve<br>
+         <input type="radio" value="deny" ngModel name="status">Deny<br>
+         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+       </form>
+      </td>
+      <td *ngIf="reimbursement.statusId === 2">
+          This reimbursement has been approved.
+      </td>
+      <td *ngIf="reimbursement.statusId === 3">
+          This reimbursement has been denied.
+      </td>
+   </tr>
+  </ng-container>
+  </table>
+</div>
